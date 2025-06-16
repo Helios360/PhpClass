@@ -16,6 +16,7 @@ app.listen(port, () => {
 
 app.get("/users", (req,res) => {
 	res.send("Voici la liste : liste");
+	console.log(`server is running on port ${port}`);
 });
 
 
