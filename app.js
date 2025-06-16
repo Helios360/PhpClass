@@ -24,17 +24,14 @@ app.listen(port, () => {
 
 
 
-fetch('https://example.com/users', {
-	method: 'POST',
-	headers: {
-		'Content-Type': 'application/json'
-	},
-	body: JSON.stringify({
-		name: 'John Doe',
-		email: 'johndoe@example.com',
-		password: 'securepassword123'
-	})
-})
-	.then(response => response.json())
-	.then(data => console.log(data))
-	.catch(error => console.error('Erreur:', error));
+app.post("/users", (req, res) => {
+	const { name, email, password } = req.body;
+
+	if (!name || !email || !password) {
+		return res.status(400).json({ error: "Missing required fields" });
+	}
+
+	console.log("New user:", { name, email, password });
+
+	res.status(201).json({ message: "User created", user: { name, email } });
+});
