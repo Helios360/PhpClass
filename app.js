@@ -13,3 +13,11 @@ app.get("/date",(req, res) => {
 app.listen(port, () => {
 	console.log(`server is running on port ${port} `);
 });
+
+app.get("/users", (req,res) => {
+	res.send("Voici la liste : liste");
+});
+
+
+
+
