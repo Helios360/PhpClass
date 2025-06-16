@@ -14,16 +14,6 @@ app.listen(port, () => {
 	console.log(`server is running on port ${port} `);
 });
 
-
-
-
-
-
-
-
-
-
-
 app.post("/users", (req, res) => {
 	const { name, email, password } = req.body;
 
@@ -34,4 +24,19 @@ app.post("/users", (req, res) => {
 	console.log("New user:", { name, email, password });
 
 	res.status(201).json({ message: "User created", user: { name, email } });
+});
+
+app.get("/users", (req,res) => {
+	res.send("Voici la liste : liste");
+	console.log(`server is running on port ${port}`);
+});
+
+app.delete("/delete/:id", (req, res) => {
+	try {
+		const id =  req.params.id;
+		res.send(`L'utilisateur avec pour id: ${id} a été supprimé`);
+	} catch (error) {
+		console.error(error)	
+		res.status(500).send("Une erreur est survenue.");	
+	}
 });
